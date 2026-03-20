@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>New Business Formation Checklist — Verified Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── AUTH GATE ───────────────────────────────────── */
+:root {
+  --ink:#0f0e0c;--paper:#f5f0e8;--cream:#ede7d9;--gold:#c9952a;--gold-light:#e8b84b;
+  --rust:#b94a2c;--sage:#3a5c4e;--sage-light:#e8f0ec;--border:#d4c9b2;
+  --blue:#1e3a5f;--blue-light:#e8edf5;--amber-light:#fdf3dc;
+  --shadow:rgba(15,14,12,0.12);--purple:#5a2d82;--purple-light:#f0eaf8;
+}
+#auth-gate {
+  min-height:100vh;background:var(--ink);display:flex;align-items:center;
+  justify-content:center;padding:24px;position:relative;overflow:hidden;
+}
+#auth-gate::before {
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent,transparent 40px,
+    rgba(201,149,42,0.04) 40px,rgba(201,149,42,0.04) 41px);
+}
+.gate-card {
+  background:var(--paper);border-radius:16px;padding:48px 44px;max-width:440px;
+  width:100%;position:relative;z-index:1;box-shadow:0 24px 80px rgba(0,0,0,0.5);
+}
+.gate-eyebrow {
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:12px;
+}
+.gate-card h1 {
+  font-family:'Playfair Display',serif;font-size:28px;font-weight:900;
+  line-height:1.15;margin-bottom:10px;color:var(--ink);
+}
+.gate-card h1 em { font-style:italic;color:var(--gold); }
+.gate-desc {
+  font-family:'DM Sans',sans-serif;font-size:14px;color:#666;
+  line-height:1.7;margin-bottom:24px;
+}
+.gate-bullets {
+  list-style:none;margin:0 0 24px;padding:0;
+}
+.gate-bullets li {
+  font-family:'DM Sans',sans-serif;font-size:13px;color:#555;
+  padding:5px 0 5px 20px;position:relative;border-bottom:1px dashed var(--border);
+}
+.gate-bullets li:last-child { border-bottom:none; }
+.gate-bullets li::before { content:'→';position:absolute;left:0;color:var(--gold);font-weight:700; }
+.gate-label {
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:#888;display:block;margin-bottom:8px;
+}
+.gate-input {
+  width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:15px;background:white;color:var(--ink);
+  outline:none;transition:border-color 0.2s;margin-bottom:12px;
+}
+.gate-input:focus { border-color:var(--gold); }
+.gate-btn {
+  width:100%;padding:14px;background:var(--ink);color:var(--gold);border:none;
+  border-radius:8px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;cursor:pointer;transition:background 0.2s,color 0.2s;
+  margin-bottom:8px;
+}
+.gate-btn:hover:not(:disabled) { background:var(--gold);color:var(--ink); }
+.gate-btn:disabled { opacity:0.5;cursor:not-allowed; }
+.gate-btn.soft {
+  background:transparent;color:#888;border:1.5px solid var(--border);
+  font-size:11px;padding:10px;
+}
+.gate-btn.soft:hover { background:var(--border);color:var(--ink); }
+.gate-msg {
+  font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 14px;
+  border-radius:6px;margin-bottom:12px;display:none;line-height:1.5;
+}
+.gate-msg.error   { background:#fdecea;color:var(--rust);display:block; }
+.gate-msg.success { background:var(--sage-light);color:var(--sage);display:block; }
+.gate-msg.info    { background:var(--amber-light);color:#7a5a00;display:block; }
+.step-dots { display:flex;gap:6px;margin-bottom:28px; }
+.sdot { height:3px;border-radius:2px;transition:all 0.3s; }
+.sdot.active { background:var(--gold);flex:2; }
+.sdot.done   { background:var(--sage);flex:1; }
+.sdot.idle   { background:var(--border);flex:1; }
+.otp-row { display:flex;gap:8px;justify-content:center;margin-bottom:14px; }
+.otp-digit {
+  width:48px;height:58px;text-align:center;font-family:'DM Mono',monospace;
+  font-size:24px;font-weight:700;border:1.5px solid var(--border);border-radius:8px;
+  outline:none;transition:border-color 0.2s;background:white;color:var(--ink);
+}
+.otp-digit:focus { border-color:var(--gold); }
+.email-chip {
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);
+  background:rgba(201,149,42,0.1);padding:7px 14px;border-radius:6px;
+  margin-bottom:18px;text-align:center;word-break:break-all;display:block;
+}
+.gate-divider {
+  display:flex;align-items:center;gap:12px;margin:14px 0;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;
+  color:#bbb;text-transform:uppercase;
+}
+.gate-divider::before,.gate-divider::after { content:'';flex:1;height:1px;background:var(--border); }
+#checklist-content { display:none; }
+
+/* ── CHECKLIST STYLES ────────────────────────────── */
+:root {
+  --ink: #0f0e0c;
+  --paper: #f5f0e8;
+  --cream: #ede7d9;
+  --gold: #c9952a;
+  --gold-light: #e8b84b;
+  --rust: #b94a2c;
+  --sage: #3a5c4e;
+  --sage-light: #e8f0ec;
+  --blue: #1e3a5f;
+  --blue-light: #e8edf5;
+  --amber-light: #fdf3dc;
+  --border: #d4c9b2;
+  --shadow: rgba(15,14,12,0.12);
+  --purple: #5a2d82;
+  --purple-light: #f0eaf8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; line-height: 1.6; }
+
+/* MASTHEAD */
+.masthead { background: var(--ink); color: var(--paper); padding: 56px 40px 48px; position: relative; overflow: hidden; }
+.masthead::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201,149,42,0.04) 40px, rgba(201,149,42,0.04) 41px); }
+.masthead-inner { max-width: 880px; margin: 0 auto; position: relative; }
+.masthead-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 54px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+.masthead h1 em { font-style: italic; color: var(--gold-light); }
+.masthead-sub { font-size: 16px; color: rgba(245,240,232,0.7); max-width: 560px; line-height: 1.7; }
+.progress-bar-wrap { margin-top: 36px; background: rgba(255,255,255,0.1); border-radius: 4px; height: 6px; max-width: 400px; }
+.progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 4px; transition: width 0.5s ease; }
+.progress-label { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,240,232,0.5); margin-top: 8px; letter-spacing: 1px; }
+
+/* LAYOUT */
+.container { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 14px; background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; font-size: 13px; }
+.legend-title { width: 100%; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+.legend-item { display: flex; align-items: center; gap: 8px; color: #555; }
+.badge { display: inline-flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 3px; white-space: nowrap; }
+.badge-cost { background: #dff0e8; color: #2a6e4a; }
+.badge-rec  { background: #e8edf5; color: var(--blue); }
+.badge-edu  { background: #fdf3dc; color: #7a5a00; }
+.badge-warn { background: #fdecea; color: #8b2515; }
+.badge-tool { background: var(--purple-light); color: var(--purple); }
+
+/* PHASE LABEL */
+.phase-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin: 48px 0 16px; display: flex; align-items: center; gap: 12px; }
+.phase-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* STEP CARD */
+.step { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; transition: box-shadow 0.2s; box-shadow: 0 2px 8px var(--shadow); }
+.step:hover { box-shadow: 0 6px 20px var(--shadow); }
+.step.done { border-color: var(--sage); }
+.step.done .step-header { background: var(--sage-light); }
+.step-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; background: white; transition: background 0.2s; }
+.step-header:hover { background: #fafaf7; }
+.step.done .step-header:hover { background: var(--sage-light); }
+.step-check { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; margin-top: 2px; font-size: 14px; color: transparent; background: white; }
+.step.done .step-check { background: var(--sage); border-color: var(--sage); color: white; }
+.step-num { font-family: 'DM Mono', monospace; font-size: 11px; color: #aaa; min-width: 28px; text-align: center; margin-top: 6px; }
+.step-title-wrap { flex: 1; }
+.step-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.step-subtitle { font-size: 13px; color: #777; line-height: 1.5; }
+.step-toggle { font-size: 18px; color: #aaa; transition: transform 0.25s; margin-top: 4px; min-width: 24px; text-align: center; }
+.step.open .step-toggle { transform: rotate(180deg); color: var(--gold); }
+.step-body { display: none; padding: 24px 24px 24px 76px; border-top: 1px solid var(--border); }
+.step.open .step-body { display: block; }
+
+/* CONTENT BLOCKS */
+.block { margin-bottom: 16px; padding: 16px 20px; border-radius: 8px; font-size: 14px; line-height: 1.75; }
+.block:last-child { margin-bottom: 0; }
+.block-edu  { background: var(--amber-light); border-left: 3px solid var(--gold); }
+.block-rec  { background: var(--blue-light); border-left: 3px solid var(--blue); }
+.block-warn { background: #fdecea; border-left: 3px solid var(--rust); }
+.block-cost { background: var(--sage-light); border-left: 3px solid var(--sage); }
+.block-tool { background: var(--purple-light); border-left: 3px solid var(--purple); }
+.block-diy  { background: #fff8ee; border-left: 3px solid var(--gold); }
+.block-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.block-edu  .block-label { color: #7a5a00; }
+.block-rec  .block-label { color: var(--blue); }
+.block-warn .block-label { color: var(--rust); }
+.block-cost .block-label { color: var(--sage); }
+.block-tool .block-label { color: var(--purple); }
+.block-diy  .block-label { color: #8a6000; }
+.block p + p { margin-top: 10px; }
+.block ul { margin: 10px 0 0 16px; list-style: disc; }
+.block ul li { margin-bottom: 6px; }
+.block a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+/* DIY VS 3RD PARTY TOGGLE */
+.path-toggle { display: flex; gap: 0; margin-bottom: 16px; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+.path-btn { flex: 1; padding: 10px 16px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; background: white; color: #888; transition: all 0.2s; }
+.path-btn:first-child { border-right: 1px solid var(--border); }
+.path-btn.active-diy { background: var(--amber-light); color: #7a5a00; font-weight: 700; }
+.path-btn.active-pro { background: var(--sage-light); color: var(--sage); font-weight: 700; }
+.path-panel { display: none; }
+.path-panel.visible { display: block; }
+
+/* FEATURE CARD (NW / Namecheap) */
+.feature-card { display: flex; align-items: center; gap: 14px; background: #f0f7f0; border: 1.5px solid #b0cfb8; border-radius: 8px; padding: 14px 18px; margin: 12px 0; }
+.feature-card.blue { background: #f0f5ff; border-color: #b0c4e8; }
+.feature-logo { width: 44px; height: 44px; min-width: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; color: white; }
+.feature-logo.green { background: var(--sage); }
+.feature-logo.red   { background: #de3723; }
+.feature-logo.dark  { background: var(--ink); }
+.feature-info { flex: 1; }
+.feature-name { font-weight: 700; font-size: 15px; }
+.feature-name a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold); }
+.feature-name a:hover { color: var(--sage); }
+.feature-tag { font-size: 12px; color: #777; font-family: 'DM Mono', monospace; }
+.feature-price { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--sage); white-space: nowrap; }
+.feature-price span { font-size: 13px; font-family: 'DM Sans', sans-serif; font-weight: 400; color: #777; }
+
+/* TABLES */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+.compare-table th { background: var(--ink); color: var(--paper); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+.compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.compare-table tr:nth-child(even) td { background: #fafaf7; }
+.compare-table tr:last-child td { border-bottom: none; }
+.yes { color: var(--sage); font-weight: 600; }
+.no  { color: var(--rust); font-weight: 600; }
+.maybe { color: var(--gold); font-weight: 600; }
+
+/* STATE SELECTOR */
+.state-selector-wrap { margin-top: 14px; background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+.state-selector-label { display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.state-select-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+#stateSelect { flex: 1; min-width: 200px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: white; color: var(--ink); cursor: pointer; }
+#stateSelect:focus { outline: none; border-color: var(--gold); }
+.state-go-btn { display: inline-flex; align-items: center; padding: 10px 18px; background: var(--ink); color: var(--gold); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; text-decoration: none; border-radius: 6px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.state-go-btn:hover { background: var(--gold); color: var(--ink); }
+.state-result { margin-top: 12px; padding: 10px 14px; background: var(--sage-light); border: 1px solid #b0cfb8; border-radius: 6px; font-size: 13px; color: var(--sage); font-weight: 600; }
+
+/* ANNUAL GRID */
+.annual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; margin-top: 12px; }
+.annual-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.annual-card h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.annual-card .price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); margin: 6px 0 4px; }
+.annual-card p { font-size: 13px; color: #444; line-height: 1.6; }
+
+/* CROSS REF */
+.cross-ref { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; cursor: pointer; color: var(--gold); text-decoration: none; transition: background 0.15s; margin: 2px; }
+.cross-ref:hover { background: var(--gold); color: white; }
+
+/* FOOTER */
+.footer-note { background: var(--ink); color: rgba(245,240,232,0.6); text-align: center; padding: 32px 24px; font-size: 13px; margin-top: 60px; line-height: 1.8; }
+.footer-note strong { color: var(--gold); }
+
+/* BACK TO TOP */
+.back-top { position: fixed; bottom: 28px; right: 28px; background: var(--ink); color: var(--gold); border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer; box-shadow: 0 4px 16px var(--shadow); display: none; align-items: center; justify-content: center; transition: background 0.2s; z-index: 100; }
+.back-top:hover { background: var(--gold); color: var(--ink); }
+.back-top.visible { display: flex; }
+
+@media (max-width: 600px) {
+  .step-body { padding-left: 24px; }
+  .masthead { padding: 36px 20px 32px; }
+  .feature-card { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH GATE ──────────────────────────────────── -->
+<div id="auth-gate">
+  <div class="gate-card">
+
+    <!-- Step 1: Email -->
+    <div id="gs-email">
+      <div class="gate-eyebrow">Founder's Compliance Playbook · 2025 Edition</div>
+      <h1>Launch Your Business<br/><em>The Right Way.</em></h1>
+      <p class="gate-desc">Free step-by-step guide covering:</p>
+      <ul class="gate-bullets">
+        <li>Business name &amp; trademark searches</li>
+        <li>LLC, S-Corp &amp; entity type decisions</li>
+        <li>State filing with DIY &amp; professional paths</li>
+        <li>Domain, email &amp; social media setup</li>
+        <li>Annual compliance obligations &amp; costs</li>
+        <li>Trademark &amp; copyright registration</li>
+      </ul>
+      <div class="step-dots"><div class="sdot active"></div><div class="sdot idle"></div></div>
+      <div id="msg-email" class="gate-msg"></div>
+      <label class="gate-label" for="email-input">Your Email Address</label>
+      <input class="gate-input" type="email" id="email-input" placeholder="you@youremail.com" autocomplete="email"/>
+      <button class="gate-btn" id="btn-send" onclick="sendCode()">Send My Access Code →</button>
+      <p style="font-size:12px;color:#aaa;text-align:center;font-family:'DM Sans',sans-serif;margin-top:6px;">
+        We'll email you a 6-digit code. No password. No spam.
+      </p>
+    </div>
+
+    <!-- Step 2: OTP -->
+    <div id="gs-otp" style="display:none">
+      <div class="gate-eyebrow">Step 2 of 2 — Verify Your Email</div>
+      <h1>Check Your<br/><em>Inbox.</em></h1>
+      <p class="gate-desc">6-digit code sent to:</p>
+      <span class="email-chip" id="chip-email"></span>
+      <div class="step-dots"><div class="sdot done"></div><div class="sdot active"></div></div>
+      <div id="msg-otp" class="gate-msg"></div>
+      <label class="gate-label">Enter 6-Digit Code</label>
+      <div class="otp-row">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d0" autocomplete="one-time-code"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d1"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d2"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d3"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d4"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" id="d5"/>
+      </div>
+      <button class="gate-btn" id="btn-verify" onclick="verifyCode()" disabled>Unlock the Guide →</button>
+      <div class="gate-divider">options</div>
+      <button class="gate-btn soft" id="btn-resend" onclick="resendCode()">Resend code</button>
+      <button class="gate-btn soft" onclick="goBack()" style="margin-top:6px">← Use a different email</button>
+      <p style="font-size:12px;color:#aaa;text-align:center;font-family:'DM Sans',sans-serif;margin-top:14px;">
+        Check spam if you don't see it within 60 seconds.<br/>Code expires in 10 minutes.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHECKLIST (hidden until verified) ─────────── -->
+<div id="checklist-content">
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-eyebrow">The Founder's Compliance Playbook · 2025 Edition</div>
+    <h1>Launch Your Business<br/><em>The Right Way.</em></h1>
+    <p class="masthead-sub">A no-assumptions, step-by-step checklist for forming your corporation, securing your identity online, and staying compliant — with every decision explained and both DIY and professional paths shown.</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 of 15 steps completed</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="legend">
+    <div class="legend-title">How to read this guide</div>
+    <div class="legend-item"><span class="badge badge-edu">📚 Education</span> Background to make informed decisions</div>
+    <div class="legend-item"><span class="badge badge-rec">✅ Recommendation</span> Suggested path for most SMB owners</div>
+    <div class="legend-item"><span class="badge badge-cost">💰 Cost</span> Real price estimates</div>
+    <div class="legend-item"><span class="badge badge-warn">⚠️ Warning</span> Common pitfalls</div>
+    <div class="legend-item"><span class="badge badge-tool">🔧 Tool / Service</span> Specific platforms to use</div>
+    <div class="legend-item" style="margin-top:6px; width:100%; color:#555; font-size:12px;">Every step with a filing or document shows both a <strong>DIY path</strong> and a <strong>Professional Service path</strong> — choose what fits your comfort level and budget.</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 1 — NAME & BRAND RESEARCH            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 1 — Name &amp; Brand Research</div>
+
+  <!-- STEP 1: Business Name Availability -->
+  <div class="step" id="step-1">
+    <div class="step-header" onclick="toggleStep('step-1')">
+      <div class="step-check" onclick="toggleDone(event,'step-1')">✓</div>
+      <div class="step-num">01</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Search Your Business Name — State Registry <span class="badge badge-tool">🔧 Free</span></div>
+        <div class="step-subtitle">Confirm your name is available in your state before investing a single dollar in branding.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Why This Comes First</div>
+        <p>Your business name must be legally "distinguishable" from all existing entities registered in your state. If someone already has your name, you cannot use it — even if you've been operating informally. Check this before buying a domain, printing cards, or building a logo.</p>
+        <p>Note: a state-level name registration does <strong>not</strong> protect your name nationally. That requires a federal trademark (see Step 15). But state availability is the minimum required to form your entity.</p>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 Find Your State's Business Search Portal</div>
+        <p>Select your state below to go directly to the official search page. All searches are free.</p>
+        <div class="state-selector-wrap">
+          <label class="state-selector-label" for="stateSelect">Select Your State</label>
+          <div class="state-select-row">
+            <select id="stateSelect" onchange="updateStateLink()">
+              <option value="">-- Choose a state --</option>
+              <option value="AL|https://www.sos.alabama.gov/government-records/business-entity-records|Alabama Secretary of State">Alabama</option>
+              <option value="AK|https://www.commerce.alaska.gov/cbp/main/search/entities|Alaska Division of Corporations">Alaska</option>
+              <option value="AZ|https://ecorp.azcc.gov/BusinessSearch/BusinessSearch|Arizona Corporation Commission">Arizona</option>
+              <option value="AR|https://www.sos.arkansas.gov/corps/search_all.php|Arkansas Secretary of State">Arkansas</option>
+              <option value="CA|https://bizfileonline.sos.ca.gov/search/business|California Secretary of State">California</option>
+              <option value="CO|https://www.sos.state.co.us/biz/BusinessEntityCriteriaExt.do|Colorado Secretary of State">Colorado</option>
+              <option value="CT|https://service.ct.gov/business/s/onlinebusinesssearch|Connecticut Secretary of State">Connecticut</option>
+              <option value="DE|https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx|Delaware Division of Corporations">Delaware</option>
+              <option value="FL|https://search.sunbiz.org/Inquiry/CorporationSearch/ByName|Florida Division of Corporations">Florida</option>
+              <option value="GA|https://ecorp.sos.ga.gov/BusinessSearch|Georgia Secretary of State">Georgia</option>
+              <option value="HI|https://hbe.ehawaii.gov/documents/search.html|Hawaii Business Express">Hawaii</option>
+              <option value="ID|https://sos.idaho.gov/business-services-resources/business-entity-search/|Idaho Secretary of State">Idaho</option>
+              <option value="IN|https://bsd.sos.in.gov/publicbusinesssearch|Indiana Secretary of State ★">Indiana</option>
+              <option value="IA|https://sos.iowa.gov/search/business/search.aspx|Iowa Secretary of State">Iowa</option>
+              <option value="KS|https://www.sos.ks.gov/eforms/busentsrch.aspx|Kansas Secretary of State">Kansas</option>
+              <option value="KY|https://web.sos.ky.gov/ftshow/default.aspx|Kentucky Secretary of State">Kentucky</option>
+              <option value="LA|https://coraweb.sos.la.gov/commercialsearch/CommercialSearch.aspx|Louisiana Secretary of State">Louisiana</option>
+              <option value="ME|https://icrs.informe.org/nei-sos-icrs/ICRS?MainPage=x|Maine Secretary of State">Maine</option>
+              <option value="MD|https://egov.maryland.gov/businessexpress/entitysearch|Maryland Business Express">Maryland</option>
+              <option value="MA|https://corp.sec.state.ma.us/CorpWeb/CorpSearch/CorpSearch.aspx|Massachusetts Secretary of State">Massachusetts</option>
+              <option value="MI|https://cofs.lara.state.mi.us/SearchApi/Search/Search|Michigan LARA">Michigan</option>
+              <option value="MN|https://mblsportal.sos.state.mn.us/Business/Search|Minnesota Secretary of State">Minnesota</option>
+              <option value="MS|https://www.sos.ms.gov/BusinessServices/Pages/default.aspx|Mississippi Secretary of State">Mississippi</option>
+              <option value="MO|https://bsd.sos.mo.gov/BusinessEntity/BESearch.aspx|Missouri Secretary of State">Missouri</option>
+              <option value="MT|https://biz.sosmt.gov/search|Montana Secretary of State">Montana</option>
+              <option value="NE|https://www.nebraska.gov/sos/corp/corpsearch.cgi|Nebraska Secretary of State">Nebraska</option>
+              <option value="NV|https://esos.nv.gov/EntitySearch/OnlineEntitySearch|Nevada Secretary of State">Nevada</option>
+              <option value="NH|https://quickstart.sos.nh.gov/online/BusinessInquire|New Hampshire Secretary of State">New Hampshire</option>
+              <option value="NJ|https://www.njportal.com/DOR/BusinessNameSearch/|New Jersey Business Name Search">New Jersey</option>
+              <option value="NM|https://portal.sos.state.nm.us/BFS/online/CorporationBusinessSearch|New Mexico Secretary of State">New Mexico</option>
+              <option value="NY|https://apps.dos.ny.gov/publicInquiry/|New York Division of Corporations">New York</option>
+              <option value="NC|https://www.sosnc.gov/online_services/search/by_title/_Business_Registration|NC Secretary of State">North Carolina</option>
+              <option value="ND|https://firststop.sos.nd.gov/search/business|North Dakota Secretary of State">North Dakota</option>
+              <option value="OH|https://businesssearch.ohiosos.gov/|Ohio Secretary of State">Ohio</option>
+              <option value="OK|https://www.sos.ok.gov/corp/corpsearch.aspx|Oklahoma Secretary of State">Oklahoma</option>
+              <option value="OR|https://sos.oregon.gov/business/Pages/find.aspx|Oregon Secretary of State">Oregon</option>
+              <option value="PA|https://www.corporations.pa.gov/search/corpsearch|Pennsylvania Department of State">Pennsylvania</option>
+              <option value="RI|https://business.sos.ri.gov/corpsearch/corpsearch.aspx|Rhode Island Secretary of State">Rhode Island</option>
+              <option value="SC|https://businessfilings.sc.gov/BusinessFiling/Entity/Search|South Carolina Secretary of State">South Carolina</option>
+              <option value="SD|https://sosenterprise.sd.gov/BusinessServices/Business/FilingSearch.aspx|South Dakota Secretary of State">South Dakota</option>
+              <option value="TN|https://tnbear.tn.gov/Ecommerce/FilingSearch.aspx|Tennessee Secretary of State">Tennessee</option>
+              <option value="TX|https://mycpa.cpa.state.tx.us/coa/|Texas Comptroller">Texas</option>
+              <option value="UT|https://secure.utah.gov/bes/index.html|Utah Division of Corporations">Utah</option>
+              <option value="VT|https://bizfilings.vermont.gov/online/BusinessInquire|Vermont Secretary of State">Vermont</option>
+              <option value="VA|https://cis.scc.virginia.gov/|Virginia State Corporation Commission">Virginia</option>
+              <option value="WA|https://ccfs.sos.wa.gov/#/|Washington Secretary of State">Washington</option>
+              <option value="WV|https://apps.wv.gov/SOS/BusinessEntitySearch/|West Virginia Secretary of State">West Virginia</option>
+              <option value="WI|https://www.wdfi.org/apps/CorpSearch/Search.aspx|Wisconsin DFI">Wisconsin</option>
+              <option value="WY|https://wyobiz.wyo.gov/Business/FilingSearch.aspx|Wyoming Secretary of State">Wyoming</option>
+            </select>
+            <a id="stateGoBtn" href="#" target="_blank" class="state-go-btn" style="display:none">Open Search Portal →</a>
+          </div>
+          <div id="stateResult" class="state-result" style="display:none"></div>
+        </div>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Name Rules to Know</div>
+        <p>Your name must include a designator like <strong>LLC, L.L.C., Inc., Corp.,</strong> or <strong>Co.</strong> — your state will tell you which are accepted. Names are compared without regard to punctuation or common words like "The" — so "The Blue Door LLC" and "Blue Door Inc" may conflict. When in doubt, pick a distinctive name.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Federal Trademark Search -->
+  <div class="step" id="step-2">
+    <div class="step-header" onclick="toggleStep('step-2')">
+      <div class="step-check" onclick="toggleDone(event,'step-2')">✓</div>
+      <div class="step-num">02</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Search Federal Trademarks (USPTO) <span class="badge badge-tool">🔧 Free</span></div>
+        <div class="step-subtitle">A name available in your state can still be federally trademarked by someone else — check both.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 State Registration ≠ Trademark Protection</div>
+        <p>Registering your LLC in Indiana does not stop a business in California from using the same name. A <strong>federal trademark</strong> gives you exclusive nationwide rights to a name or logo in your industry category. If someone else already holds a trademark similar to your chosen name, you risk a cease-and-desist letter — even after building your brand. Search now, before investing anything.</p>
+        <p>You don't need to file a trademark yet — just verify no conflicts exist. See <a onclick="scrollToStep('step-15')" href="#">Step 15</a> for when and how to file your own.</p>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 USPTO TESS — Free Trademark Search</div>
+        <p>Go to <a href="https://www.uspto.gov/trademarks/search" target="_blank">uspto.gov/trademarks/search</a> and search your exact name AND phonetically similar names. A conflict doesn't need to be identical — it must only be "confusingly similar" in the same industry class.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Domain + Social Handle Search -->
+  <div class="step" id="step-3">
+    <div class="step-header" onclick="toggleStep('step-3')">
+      <div class="step-check" onclick="toggleDone(event,'step-3')">✓</div>
+      <div class="step-num">03</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Check Domain &amp; Social Media Handle Availability <span class="badge badge-tool">🔧 Free</span></div>
+        <div class="step-subtitle">Confirm your brand name is available online before committing to it legally.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Why Check This Before Filing</div>
+        <p>Your state may approve your LLC name even if the .com domain and every social handle are already taken. Once you file, you're legally committed to that name. A quick 5-minute search here can save you a painful rebrand later.</p>
+        <p>Aim to confirm availability across: <strong>domain (.com)</strong>, <strong>Instagram</strong>, <strong>Facebook</strong>, <strong>X/Twitter</strong>, <strong>LinkedIn</strong>, <strong>TikTok</strong>, and <strong>YouTube</strong> — before you file a single document.</p>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 Social Handle Search — All Platforms at Once</div>
+        <p>Use one of these tools to search your name across 100+ platforms simultaneously:</p>
+        <ul>
+          <li><strong><a href="https://namecheckr.com" target="_blank">Namecheckr.com</a></strong> — Clean, fast, free. Shows availability across all major platforms in a single view. Recommended starting point.</li>
+          <li><strong><a href="https://knowem.com" target="_blank">KnowEm.com</a></strong> — Searches 500+ networks. Also offers a paid service to register handles on your behalf across all platforms.</li>
+          <li><strong><a href="https://instantdomainsearch.com" target="_blank">InstantDomainSearch.com</a></strong> — Real-time domain availability as you type. Fastest way to check .com, .net, .co, and more at once.</li>
+        </ul>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 Domain Availability</div>
+        <p>For domain checking alongside registrar pricing, go directly to <a href="https://www.namecheap.com" target="_blank">Namecheap.com</a> and type your name in the search bar. It instantly shows .com, .net, .co, and other extension availability with real pricing — no account needed to search.</p>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Secure Handles Immediately After Confirming Availability</div>
+        <p>The moment you confirm a name is free, create placeholder accounts on every platform — even ones you won't actively use for months. Handles are first-come-first-served and brand squatters operate fast. You can always fill in the profiles later; you can't reclaim a stolen handle easily.</p>
+        <p>If your exact name is unavailable somewhere, pick a consistent variation (<strong>@GetBrandName</strong>, <strong>@BrandNameHQ</strong>, <strong>@TheBrandName</strong>) and use it everywhere.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 2 — ENTITY DECISIONS                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 2 — Entity Decisions</div>
+
+  <!-- STEP 4: Choose Entity Type -->
+  <div class="step" id="step-4">
+    <div class="step-header" onclick="toggleStep('step-4')">
+      <div class="step-check" onclick="toggleDone(event,'step-4')">✓</div>
+      <div class="step-num">04</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Choose Your Business Entity Type <span class="badge badge-edu">📚 Education</span></div>
+        <div class="step-subtitle">LLC, S-Corp, C-Corp, or Sole Prop — your structure determines taxes, liability, and governance.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Entity Types Compared</div>
+        <table class="compare-table">
+          <tr><th>Structure</th><th>Liability Protection</th><th>Tax Treatment</th><th>Best For</th></tr>
+          <tr><td><strong>Sole Proprietorship</strong></td><td class="no">None — you are the business</td><td>Schedule C, all profit taxed as income + SE</td><td>Testing an idea, lowest risk freelance</td></tr>
+          <tr><td><strong>LLC (default)</strong></td><td class="yes">Yes</td><td>Pass-through; all profit subject to SE tax (15.3%)</td><td>Most new businesses — simple, flexible ★</td></tr>
+          <tr><td><strong>LLC + S-Corp Election</strong></td><td class="yes">Yes</td><td>Salary + distributions; SE tax only on salary</td><td>SMBs netting $50K+/year — tax savings ★★</td></tr>
+          <tr><td><strong>C-Corporation</strong></td><td class="yes">Yes</td><td>21% corporate tax + dividend tax (double taxation)</td><td>VC-funded startups, IPO-track companies</td></tr>
+          <tr><td><strong>S-Corporation (pure)</strong></td><td class="yes">Yes</td><td>Pass-through; must run payroll for owners</td><td>Businesses wanting corporate structure without C-Corp tax</td></tr>
+        </table>
+      </div>
+      <div class="block block-rec">
+        <div class="block-label">✅ Recommendation for Most SMB Owners — LLC + S-Corp Election</div>
+        <p>Form an <strong>LLC</strong> for the legal structure (simple, flexible, strong liability protection). Then elect <strong>S-Corp tax treatment</strong> via IRS Form 2553 once your net profit consistently exceeds ~$50,000/year.</p>
+        <p><strong>Here's why the S-Corp election saves real money:</strong></p>
+        <ul>
+          <li>Default LLC: $120K profit → ~$18,400 in self-employment tax (15.3%)</li>
+          <li>LLC + S-Corp: Pay yourself $60K salary → ~$9,200 SE tax on salary. The remaining $60K in owner distributions has <strong>zero SE tax</strong>.</li>
+          <li><strong>Annual savings: ~$9,200.</strong> The extra compliance costs (payroll service ~$600/yr, CPA ~$500/yr more) are far outweighed.</li>
+        </ul>
+        <p style="margin-top:10px">⏰ <strong>Critical deadline:</strong> IRS Form 2553 must be filed within <strong>75 days of forming your LLC</strong> to take effect the same tax year. See <a onclick="scrollToStep('step-9')" href="#">Step 9</a> for the full S-Corp election process.</p>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Avoid C-Corp Unless You're Raising Venture Capital</div>
+        <p>C-Corps are taxed twice — the company pays 21% corporate income tax, and then you pay personal income tax on dividends taken out. This structure is designed for companies seeking institutional investors or planning to go public. For a local or regional SMB, it creates unnecessary tax complexity and cost.</p>
+      </div>
+      <div class="block block-edu">
+        <div class="block-label">📚 LLC Governance: Member-Managed vs. Manager-Managed</div>
+        <p>When you form an LLC, you'll choose a management structure. <strong>Member-managed</strong> means all owners (members) participate in running the business — best for small teams where everyone is active. <strong>Manager-managed</strong> means you designate one or more managers (who may or may not be members) to run day-to-day operations — better if you have passive investors or a silent partner.</p>
+        <p>For a solo founder or small active team, <strong>member-managed is standard</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: Choose State of Incorporation -->
+  <div class="step" id="step-5">
+    <div class="step-header" onclick="toggleStep('step-5')">
+      <div class="step-check" onclick="toggleDone(event,'step-5')">✓</div>
+      <div class="step-num">05</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Choose Your State of Incorporation <span class="badge badge-edu">📚 Education</span></div>
+        <div class="step-subtitle">Delaware and Wyoming sound appealing — but for most local businesses, your home state wins.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Home State vs. Delaware vs. Wyoming</div>
+        <table class="compare-table">
+          <tr><th>State</th><th>One-Time Fee</th><th>Annual Fee</th><th>Best For</th></tr>
+          <tr><td><strong>Your Home State ★</strong></td><td>$50–$300</td><td>$25–$300</td><td>Any business physically operating locally</td></tr>
+          <tr><td><strong>Delaware</strong></td><td>$90</td><td>~$350 franchise tax</td><td>VC-backed startups, C-Corps seeking investment</td></tr>
+          <tr><td><strong>Wyoming</strong></td><td>$100</td><td>~$60</td><td>Privacy-focused LLCs, no state income tax</td></tr>
+          <tr><td><strong>Nevada</strong></td><td>$75</td><td>~$350</td><td>Asset protection, no state corporate income tax</td></tr>
+        </table>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ The Foreign Qualification Trap</div>
+        <p>If you form in Delaware but operate in Indiana, you must <strong>also register as a "foreign entity" in Indiana</strong> — paying filing fees and annual fees in both states. That's double the paperwork and double the cost with zero benefit for a local business. Unless you're seeking venture capital, <strong>incorporate where you operate.</strong></p>
+      </div>
+      <div class="block block-rec">
+        <div class="block-label">✅ Recommendation</div>
+        <p>Physical business operating locally → <strong>incorporate in your home state.</strong><br/>High-growth tech startup seeking VC funding → <strong>Delaware C-Corp from day one.</strong><br/>Online-only business with no physical presence, privacy-sensitive → consider <strong>Wyoming LLC.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 3 — PRE-FILING SETUP                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 3 — Pre-Filing Setup</div>
+
+  <!-- STEP 6: Choose Registered Agent -->
+  <div class="step" id="step-6">
+    <div class="step-header" onclick="toggleStep('step-6')">
+      <div class="step-check" onclick="toggleDone(event,'step-6')">✓</div>
+      <div class="step-num">06</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Choose Your Registered Agent <span class="badge badge-edu">📚 Education</span> <span class="badge badge-cost">💰 $0–$125/yr</span></div>
+        <div class="step-subtitle">Required by law in every state — you'll name them on your formation documents.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What is a Registered Agent?</div>
+        <p>Every U.S. business entity must designate a <strong>Registered Agent</strong> — a person or company with a physical street address in your state who is available during all business hours to receive legal documents on behalf of your business. These include lawsuits (service of process), government compliance notices, tax correspondence, and state filing reminders.</p>
+        <p><strong>Why not just use your own home address?</strong></p>
+        <ul>
+          <li>Your home address becomes <strong>permanent public record</strong> — searchable by anyone, including data brokers.</li>
+          <li>You could be served with a lawsuit in front of employees, clients, or family.</li>
+          <li>You must be physically present at the address during all business hours, 365 days a year.</li>
+          <li>Missing a legal notice can result in a <strong>default judgment against you</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="path-toggle" id="toggle-ra">
+        <button class="path-btn active-diy" onclick="switchPath('ra','diy')">🛠 DIY — Be Your Own Agent</button>
+        <button class="path-btn" onclick="switchPath('ra','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="ra-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — Acting as Your Own Registered Agent</div>
+          <p>You can legally serve as your own registered agent in most states if you have a physical street address (no P.O. boxes) in the state of formation and can be present there during all normal business hours.</p>
+          <p><strong>Cost: $0</strong></p>
+          <p><strong>Downsides:</strong> Your personal address becomes public record. You must be reachable at that address at all times during business hours. If you move, you must update the state immediately. You'll manage all compliance deadlines yourself.</p>
+          <p>This is only recommended for businesses operating out of a commercial office address — never your home.</p>
+        </div>
+      </div>
+      <div class="path-panel" id="ra-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path — #1 Recommended: Northwest Registered Agent</div>
+          <div class="feature-card">
+            <div class="feature-logo green">NW</div>
+            <div class="feature-info">
+              <div class="feature-name"><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></div>
+              <div class="feature-tag">northwestregisteredagent.com</div>
+            </div>
+            <div class="feature-price">$125<span>/yr</span></div>
+          </div>
+          <p>Northwest is the gold standard for registered agent services for small businesses. Key advantages:</p>
+          <ul>
+            <li><strong>Privacy-first:</strong> They explicitly do not sell or share your data — rare in this industry.</li>
+            <li><strong>Free first year</strong> of registered agent service included when you use their formation service.</li>
+            <li><strong>Compliance dashboard</strong> with document storage, mail forwarding, and annual report reminders.</li>
+            <li><strong>Real support staff</strong> — no chatbots, no offshore call centers.</li>
+            <li><strong>All 50 states</strong> covered if you ever expand.</li>
+          </ul>
+          <p style="margin-top:10px">→ <a href="https://www.northwestregisteredagent.com" target="_blank">northwestregisteredagent.com</a> — choose "Registered Agent Service" or bundle with formation in the next step.</p>
+        </div>
+        <div class="block block-tool">
+          <div class="block-label">🔧 Other Reputable Options</div>
+          <ul>
+            <li><strong><a href="https://www.bizee.com" target="_blank">Bizee (formerly Incfile)</a></strong> — First year free, then $119/yr. High volume, adequate service.</li>
+            <li><strong><a href="https://www.harborcompliance.com" target="_blank">Harbor Compliance</a></strong> — ~$99/yr; excellent for multi-state businesses.</li>
+            <li><strong>LegalZoom</strong> — ~$299/yr. Reputable but overpriced vs. Northwest.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block block-cost">
+        <div class="block-label">💰 Annual Cost</div>
+        <p><strong>DIY:</strong> $0 (trade-off: your address is public, you manage all deadlines)<br/><strong>Professional service:</strong> $99–$125/year — tax-deductible as a business expense.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: Draft Operating Agreement -->
+  <div class="step" id="step-7">
+    <div class="step-header" onclick="toggleStep('step-7')">
+      <div class="step-check" onclick="toggleDone(event,'step-7')">✓</div>
+      <div class="step-num">07</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Draft Your Operating Agreement <span class="badge badge-edu">📚 Education</span></div>
+        <div class="step-subtitle">Your LLC's internal rulebook — draft this before you file, not after.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What is an Operating Agreement?</div>
+        <p>An Operating Agreement is the LLC's governing document. It defines: ownership percentages, how profits and losses are split, how decisions are made, what happens if a member wants to leave, and how the business is dissolved. Even for a single-member LLC it is critical because:</p>
+        <ul>
+          <li>It reinforces the <strong>"corporate veil"</strong> — demonstrating your LLC is legally separate from you personally. Without it, a court may disregard your LLC and go after your personal assets.</li>
+          <li><strong>Banks require it</strong> to open a business bank account.</li>
+          <li>Some states (California, New York, Missouri, Maine, Delaware) require it by law.</li>
+          <li>It protects you in partner disputes — without one, your state's default rules apply, which may not reflect what you intended.</li>
+        </ul>
+      </div>
+
+      <div class="path-toggle" id="toggle-oa">
+        <button class="path-btn active-diy" onclick="switchPath('oa','diy')">🛠 DIY — Draft Your Own</button>
+        <button class="path-btn" onclick="switchPath('oa','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="oa-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path</div>
+          <p>Free templates are available from several reputable sources:</p>
+          <ul>
+            <li><strong><a href="https://www.rocketlawyer.com" target="_blank">Rocket Lawyer</a></strong> — Free basic template with a guided Q&A. Good starting point for single-member LLCs.</li>
+            <li><strong><a href="https://www.legalzoom.com" target="_blank">LegalZoom</a></strong> — Free template library. Requires creating an account.</li>
+            <li><strong>Your state's Secretary of State website</strong> — Some states provide official sample operating agreements.</li>
+          </ul>
+          <p style="margin-top:10px"><strong>Cost: $0 for template. For multi-member LLCs, strongly consider an attorney review ($300–$800 one-time)</strong> — money well spent to prevent future partner disputes.</p>
+        </div>
+      </div>
+      <div class="path-panel" id="oa-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path — Included Free with Northwest Formation</div>
+          <div class="feature-card">
+            <div class="feature-logo green">NW</div>
+            <div class="feature-info">
+              <div class="feature-name"><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></div>
+              <div class="feature-tag">Includes Operating Agreement with Formation</div>
+            </div>
+            <div class="feature-price" style="font-size:18px; color: var(--sage);">Included<span><br/>w/ formation</span></div>
+          </div>
+          <p>When you form your LLC through Northwest Registered Agent, they provide a <strong>customized Operating Agreement as part of the formation package</strong> — at no additional cost. This is a properly structured document (not just a generic template) tailored to your LLC's details including member names, ownership percentages, and management structure.</p>
+          <p style="margin-top:10px">This alone saves you $0–$800 depending on whether you'd otherwise hire an attorney to draft one. For most single-member or simple multi-member LLCs, Northwest's included agreement is fully adequate.</p>
+          <p style="margin-top:10px">→ <a href="https://www.northwestregisteredagent.com" target="_blank">northwestregisteredagent.com</a> — select "Form a Business" to start the formation bundle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 4 — ENTITY FORMATION                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 4 — Entity Formation</div>
+
+  <!-- STEP 8: File Articles -->
+  <div class="step" id="step-8">
+    <div class="step-header" onclick="toggleStep('step-8')">
+      <div class="step-check" onclick="toggleDone(event,'step-8')">✓</div>
+      <div class="step-num">08</div>
+      <div class="step-title-wrap">
+        <div class="step-title">File Your Articles of Organization / Incorporation <span class="badge badge-cost">💰 $50–$500</span></div>
+        <div class="step-subtitle">The official state filing that legally creates your business entity. Your clock starts here.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Articles of Organization vs. Articles of Incorporation</div>
+        <p><strong>Articles of Organization</strong> = the LLC formation document. Establishes entity name, registered agent, management structure, and business purpose.</p>
+        <p><strong>Articles of Incorporation</strong> = the Corporation formation document (S-Corp or C-Corp). Also includes authorized share structure, initial directors, and par value of shares.</p>
+        <p style="margin-top:10px">⏰ <strong>Two federal deadlines begin the day you file:</strong></p>
+        <ul>
+          <li><strong>BOI Report</strong> — must be filed within 90 days (see <a onclick="scrollToStep('step-10')" href="#">Step 10</a>)</li>
+          <li><strong>S-Corp Election</strong> — must be filed within 75 days to take effect this tax year (see <a onclick="scrollToStep('step-9')" href="#">Step 9</a>)</li>
+        </ul>
+      </div>
+
+      <div class="path-toggle" id="toggle-art">
+        <button class="path-btn active-diy" onclick="switchPath('art','diy')">🛠 DIY — File Directly with State</button>
+        <button class="path-btn" onclick="switchPath('art','pro')">🏢 Use a Formation Service</button>
+      </div>
+
+      <div class="path-panel visible" id="art-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — Secretary of State Direct Filing</div>
+          <p>Go directly to your state's Secretary of State website (use the state dropdown in <a onclick="scrollToStep('step-1')" href="#">Step 1</a> for your state's portal). Most states have an online filing system. You'll need:</p>
+          <ul>
+            <li>Your chosen business name (confirmed available)</li>
+            <li>Your registered agent's name and address</li>
+            <li>Business address and management structure choice</li>
+            <li>A credit card for the state filing fee</li>
+          </ul>
+          <p style="margin-top:10px"><strong>Typical processing:</strong> 1–3 business days online; 1–3 weeks by mail.</p>
+        </div>
+      </div>
+      <div class="path-panel" id="art-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path — Northwest Registered Agent Full Bundle</div>
+          <div class="feature-card">
+            <div class="feature-logo green">NW</div>
+            <div class="feature-info">
+              <div class="feature-name"><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></div>
+              <div class="feature-tag">Full formation bundle — all 50 states</div>
+            </div>
+            <div class="feature-price">$39<span>+ state fee</span></div>
+          </div>
+          <p>Northwest's formation bundle includes: Articles filing, Registered Agent (free first year), Operating Agreement, and EIN assistance — for a $39 service fee plus your state's filing fee. This is exceptional value for a first-time founder who wants everything handled correctly.</p>
+          <p style="margin-top:10px"><strong>What you get:</strong></p>
+          <ul>
+            <li>Articles filed directly with your state on your behalf</li>
+            <li>Registered agent service free for the first year ($125/yr after)</li>
+            <li>Customized operating agreement included</li>
+            <li>EIN application assistance</li>
+            <li>Online compliance dashboard with deadline reminders</li>
+          </ul>
+          <p style="margin-top:10px">→ <a href="https://www.northwestregisteredagent.com" target="_blank">northwestregisteredagent.com</a> → "Form a Business" → choose your state and entity type.</p>
+        </div>
+      </div>
+
+      <div class="block block-cost">
+        <div class="block-label">💰 State Filing Fees Reference</div>
+        <p>Indiana: $95 &nbsp;|&nbsp; Texas: $300 &nbsp;|&nbsp; Florida: $125 &nbsp;|&nbsp; California: $70 (+$800/yr min tax) &nbsp;|&nbsp; New York: $200 &nbsp;|&nbsp; Delaware: $90 &nbsp;|&nbsp; Wyoming: $100 &nbsp;|&nbsp; Nevada: $75 &nbsp;|&nbsp; Most other states: $50–$150</p>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ California Warning — $800 Minimum Annual Tax</div>
+        <p>California imposes a mandatory <strong>$800/year minimum franchise tax</strong> on all LLCs regardless of revenue. If your business operates in California, this cost is unavoidable. Budget for it from day one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 9: S-Corp Election -->
+  <div class="step" id="step-9">
+    <div class="step-header" onclick="toggleStep('step-9')">
+      <div class="step-check" onclick="toggleDone(event,'step-9')">✓</div>
+      <div class="step-num">09</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Elect S-Corp Tax Status — IRS Form 2553 <span class="badge badge-warn">⚠️ Deadline-Sensitive</span> <span class="badge badge-cost">💰 Free</span></div>
+        <div class="step-subtitle">Must file within 75 days of formation to take effect this tax year. Don't miss this window.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 How the S-Corp Election Works</div>
+        <p>By default, a single-member LLC is taxed as a sole proprietor — all net profit is subject to self-employment tax (15.3% up to ~$168K, then 2.9%). Filing Form 2553 tells the IRS to treat your LLC as an S-Corporation for tax purposes only — your legal structure remains an LLC.</p>
+        <p>With S-Corp status, you split income into two buckets:</p>
+        <ul>
+          <li><strong>Reasonable salary</strong> — W-2 wages you pay yourself. Subject to payroll/SE tax.</li>
+          <li><strong>Owner distributions</strong> — Profits above salary passed to you. <strong>No SE tax.</strong></li>
+        </ul>
+        <p style="margin-top:10px">The IRS requires your salary to be "reasonable" for your role. Typically set salary at 40–60% of total income and take the rest as distributions. A CPA can help you optimize this split.</p>
+      </div>
+      <div class="block block-warn">
+        <div class="block-label">⚠️ The 75-Day Deadline</div>
+        <p>Form 2553 must be filed within <strong>75 days of your LLC formation date</strong> to be effective for the current tax year. After that window, you must wait until the following January 1. Set a calendar reminder the day you file your Articles. Missing this can cost you thousands in unnecessary SE taxes for an entire year.</p>
+        <p>Alternatively, file by <strong>March 15</strong> to take effect for the next full tax year.</p>
+      </div>
+
+      <div class="path-toggle" id="toggle-scorp">
+        <button class="path-btn active-diy" onclick="switchPath('scorp','diy')">🛠 DIY — File Form 2553 Yourself</button>
+        <button class="path-btn" onclick="switchPath('scorp','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="scorp-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path</div>
+          <p>Download <a href="https://www.irs.gov/forms-pubs/about-form-2553" target="_blank">IRS Form 2553</a> directly from irs.gov — it's free. The form requires your EIN (see Step 10), LLC formation date, and tax year information. Mail or fax to your IRS service center (listed in the form instructions).</p>
+          <p style="margin-top:8px"><strong>Tip:</strong> Send via certified mail and keep the receipt — the IRS does not send immediate confirmation. Confirmation letter typically arrives 60–90 days later.</p>
+          <p><strong>Cost: $0</strong></p>
+        </div>
+      </div>
+      <div class="path-panel" id="scorp-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path</div>
+          <p><strong><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></strong> offers S-Corp election filing as an add-on service. Your CPA or business attorney can also prepare and file Form 2553 — typically $100–$200 as a standalone service. Given the tax savings at stake, having a professional handle this is worth the small fee to ensure it's filed correctly and on time.</p>
+        </div>
+      </div>
+
+      <div class="block block-rec">
+        <div class="block-label">✅ When to Make This Election</div>
+        <p>Elect S-Corp status when your business consistently nets <strong>$50,000+ per year after expenses</strong>. Below that threshold, the additional compliance costs (payroll service ~$600/yr, additional CPA fees ~$500/yr) may outweigh the SE tax savings. Consult a CPA to confirm the right timing for your specific income level.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 10: BOI Report -->
+  <div class="step" id="step-10">
+    <div class="step-header" onclick="toggleStep('step-10')">
+      <div class="step-check" onclick="toggleDone(event,'step-10')">✓</div>
+      <div class="step-num">10</div>
+      <div class="step-title-wrap">
+        <div class="step-title">File Beneficial Ownership Information (BOI) Report <span class="badge badge-warn">⚠️ 90-Day Federal Deadline</span></div>
+        <div class="step-subtitle">Required under the Corporate Transparency Act — file within 90 days of formation.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What is a BOI Report?</div>
+        <p>The <strong>Corporate Transparency Act</strong> requires most U.S. LLCs and corporations to report their beneficial owners (people who own 25%+ or exercise substantial control) to FinCEN — the Financial Crimes Enforcement Network. This is a federal anti-money-laundering measure.</p>
+        <p>Businesses formed in 2024 or later must file within <strong>90 days of formation</strong>. Failure to file can result in <strong>civil penalties up to $591/day</strong> and criminal penalties.</p>
+      </div>
+
+      <div class="path-toggle" id="toggle-boi">
+        <button class="path-btn active-diy" onclick="switchPath('boi','diy')">🛠 DIY — File Directly with FinCEN</button>
+        <button class="path-btn" onclick="switchPath('boi','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="boi-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — FinCEN Direct Filing</div>
+          <p>File free directly at <a href="https://boiefiling.fincen.gov" target="_blank">boiefiling.fincen.gov</a>. You'll need: your EIN, LLC formation date, business address, and personal information for each beneficial owner (legal name, date of birth, address, ID document). Takes approximately 15–20 minutes. <strong>Cost: $0</strong></p>
+        </div>
+      </div>
+      <div class="path-panel" id="boi-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path</div>
+          <p><strong><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></strong> offers BOI report filing as an add-on service for clients, ensuring the report is filed correctly and on time. Typical third-party fee: $25–$75. Given the steep daily penalty for non-filing, having this handled professionally is worth the small cost.</p>
+        </div>
+      </div>
+
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Check Current Requirements</div>
+        <p>BOI reporting has been subject to legal challenges since its introduction. Always verify the current filing status at <a href="https://www.fincen.gov/boi" target="_blank">fincen.gov/boi</a> before filing — requirements may have been updated.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 11: EIN -->
+  <div class="step" id="step-11">
+    <div class="step-header" onclick="toggleStep('step-11')">
+      <div class="step-check" onclick="toggleDone(event,'step-11')">✓</div>
+      <div class="step-num">11</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Obtain Your EIN (Employer Identification Number) <span class="badge badge-cost">💰 Always Free</span></div>
+        <div class="step-subtitle">Your business's federal tax ID — needed for banking, hiring, taxes, and vendor accounts.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What is an EIN?</div>
+        <p>An EIN is a 9-digit federal tax ID number — essentially your business's Social Security Number. You need it to open a business bank account, hire employees, file taxes, apply for business credit, sign up for payment processing (Stripe, Square, PayPal Business), and establish a business credit profile.</p>
+      </div>
+
+      <div class="path-toggle" id="toggle-ein">
+        <button class="path-btn active-diy" onclick="switchPath('ein','diy')">🛠 DIY — Apply at IRS.gov</button>
+        <button class="path-btn" onclick="switchPath('ein','pro')">🏢 Use a Formation Service</button>
+      </div>
+
+      <div class="path-panel visible" id="ein-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — IRS Online Application (Recommended)</div>
+          <p>Apply directly at <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank">IRS.gov EIN Application</a>. Takes about 10 minutes. You receive your EIN <strong>immediately</strong> upon completion. Available Monday–Friday 7am–10pm ET.</p>
+          <p style="margin-top:8px">Requirements: You must be the responsible party (owner), have a valid SSN or ITIN, and your entity must already be formed (Articles filed).</p>
+          <p><strong>Cost: $0 — always free directly from the IRS.</strong></p>
+        </div>
+      </div>
+      <div class="path-panel" id="ein-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path</div>
+          <p><strong><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></strong> includes EIN application assistance in their formation bundle. They prepare the SS-4 form and submit it on your behalf.</p>
+          <p style="margin-top:8px">Note: The EIN application is genuinely simple to do yourself (10 minutes at IRS.gov). The main reason to use Northwest for this is convenience — having everything handled in one place during formation. <strong>Never pay a standalone service just for an EIN</strong> — they're just filling out the same free IRS form.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 5 — BANKING                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 5 — Banking &amp; Financial Foundation</div>
+
+  <!-- STEP 12: Business Bank Account -->
+  <div class="step" id="step-12">
+    <div class="step-header" onclick="toggleStep('step-12')">
+      <div class="step-check" onclick="toggleDone(event,'step-12')">✓</div>
+      <div class="step-num">12</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Open a Dedicated Business Bank Account <span class="badge badge-warn">⚠️ Do Not Skip</span></div>
+        <div class="step-subtitle">Never mix personal and business money — this is what protects your liability shield.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 The Corporate Veil — Why This Is Non-Negotiable</div>
+        <p>The entire purpose of an LLC is to separate you legally from your business. If you mix personal and business finances — known as "commingling" — a court can <strong>pierce the corporate veil</strong>, making your personal savings, home, and assets fair game in any lawsuit against your business. This is the single most common mistake that destroys LLC protection.</p>
+        <p><strong>Do not accept a single dollar of business revenue into your personal account.</strong> Open the business account before you begin transacting.</p>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 What You Need to Open the Account</div>
+        <ul>
+          <li>Your EIN (from Step 11)</li>
+          <li>Certified Articles of Organization (from Step 8)</li>
+          <li>Operating Agreement (from Step 7)</li>
+          <li>Government-issued photo ID</li>
+          <li>Initial deposit (Mercury: $0; most banks: $25–$100)</li>
+        </ul>
+        <p style="margin-top:10px"><strong>Recommended banks:</strong> <a href="https://mercury.com" target="_blank">Mercury</a> (online, free, startup-friendly), <a href="https://relayfi.com" target="_blank">Relay Financial</a> (great for expense management), Chase Business Complete, your local credit union.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 6 — ONLINE IDENTITY                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 6 — Online Identity</div>
+
+  <!-- STEP 13: Domain -->
+  <div class="step" id="step-13">
+    <div class="step-header" onclick="toggleStep('step-13')">
+      <div class="step-check" onclick="toggleDone(event,'step-13')">✓</div>
+      <div class="step-num">13</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Register Your Domain Name <span class="badge badge-cost">💰 ~$10/yr</span></div>
+        <div class="step-subtitle">Secure your .com before someone else does — and unlock professional email at the same time.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What is a Domain Registrar?</div>
+        <p>A <strong>domain registrar</strong> is a company accredited by ICANN (the nonprofit that governs internet naming) to sell and manage domain names. You pay an annual fee — typically $10–$15 — to "rent" your domain address. You need a domain for:</p>
+        <ul>
+          <li><strong>Your website</strong> — yourbusiness.com, your permanent online address</li>
+          <li><strong>Professional email</strong> — you@yourbusiness.com instead of yourbusiness@gmail.com. A Gmail address immediately signals an informal, unestablished business to prospects, lenders, and vendors.</li>
+          <li><strong>Brand protection</strong> — owning your domain prevents competitors and squatters from claiming it</li>
+        </ul>
+      </div>
+      <div class="block block-rec">
+        <div class="block-label">✅ #1 Recommended Registrar — Namecheap</div>
+        <div class="feature-card blue">
+          <div class="feature-logo red">NC</div>
+          <div class="feature-info">
+            <div class="feature-name"><a href="https://www.namecheap.com" target="_blank">Namecheap</a></div>
+            <div class="feature-tag">namecheap.com · Domain + Email hosting</div>
+          </div>
+          <div class="feature-price" style="color:var(--blue);">~$10<span>/yr</span></div>
+        </div>
+        <ul style="margin-top:12px">
+          <li><strong>Transparent pricing</strong> — ~$9–$12/year for .com with no surprise renewal markups</li>
+          <li><strong>Free WhoisGuard privacy</strong> — hides your personal name, address, and phone number from public WHOIS lookup (other registrars charge $10–$15/yr extra for this)</li>
+          <li><strong>Email hosting included</strong> — Namecheap Private Email starts at ~$19/yr for a custom you@yourbusiness.com address. Excellent budget option for new businesses.</li>
+          <li><strong>Simple control panel</strong> — manage DNS, redirects, email settings with no technical background needed</li>
+          <li><strong>24/7 live chat support</strong></li>
+        </ul>
+        <p style="margin-top:12px">→ Go to <a href="https://www.namecheap.com" target="_blank">namecheap.com</a> and type your business name in the homepage search bar. It immediately shows availability and pricing across .com, .net, .co, and more.</p>
+      </div>
+      <div class="block block-edu">
+        <div class="block-label">📚 Which Domains to Register</div>
+        <p>Always secure your <strong>.com first</strong> — it remains the most trusted extension globally. Then consider registering: <strong>.net</strong> and <strong>.co</strong> variants (prevents near-miss confusion), common misspellings of your name. Cost for 2–3 variations: ~$25–$35/year total — cheap brand insurance.</p>
+      </div>
+      <div class="block block-tool">
+        <div class="block-label">🔧 Other Reputable Registrars</div>
+        <ul>
+          <li><strong><a href="https://www.cloudflare.com/products/registrar/" target="_blank">Cloudflare Registrar</a></strong> — At-cost pricing (~$8.57/yr for .com). Zero upsells. Best raw price. Good if tech-comfortable.</li>
+          <li><strong><a href="https://domains.squarespace.com" target="_blank">Squarespace Domains</a></strong> (formerly Google Domains) — ~$12/yr. Clean interface, integrates well with Google Workspace email.</li>
+          <li><strong>GoDaddy — Avoid.</strong> Aggressive upsells, renewal price spikes, privacy costs extra. Poor first-time experience.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 14: Business Email -->
+  <div class="step" id="step-14">
+    <div class="step-header" onclick="toggleStep('step-14')">
+      <div class="step-check" onclick="toggleDone(event,'step-14')">✓</div>
+      <div class="step-num">14</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Set Up Professional Business Email <span class="badge badge-cost">💰 $19–$72/yr</span></div>
+        <div class="step-subtitle">you@yourbusiness.com — because first impressions are everything.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Never Use Gmail or Yahoo for Business Communications</div>
+        <p>Sending proposals, invoices, and contracts from @gmail.com signals an informal, unestablished operation. Banks, lenders, enterprise clients, and many vendors notice this immediately. A professional domain email costs less than $2/month and eliminates this credibility gap instantly.</p>
+      </div>
+      <div class="block block-rec">
+        <div class="block-label">✅ Recommended Providers by Stage</div>
+        <ul>
+          <li><strong><a href="https://www.namecheap.com/hosting/email/" target="_blank">Namecheap Private Email</a> — ~$19/yr (Starter)</strong> · Best for launch stage. Custom email address, webmail, IMAP support. Paired with your Namecheap domain, setup takes under 10 minutes. Upgrade later when you need collaboration tools.</li>
+          <li><strong><a href="https://workspace.google.com" target="_blank">Google Workspace Business Starter</a> — $6/user/mo ($72/yr)</strong> · Best all-in-one upgrade. Gmail interface + Google Drive, Docs, Meet, shared calendars. Ideal when your team grows or clients expect scheduling links and shared files.</li>
+          <li><strong>Microsoft 365 Business Basic — $6/user/mo</strong> · Best if your clients or industry are Microsoft-heavy. Outlook, Teams, OneDrive, Office web apps.</li>
+          <li><strong>Zoho Mail Free Tier</strong> · Free for up to 5 users. Good bootstrapping option. Fewer integrations than Google or Microsoft.</li>
+        </ul>
+        <div style="margin-top:14px; padding:12px 16px; background:#fffbf0; border:1px solid #e8d99a; border-radius:6px; font-size:13px;">
+          <strong style="color:#7a5a00;">💡 Recommended Path:</strong> Start with <strong>Namecheap Private Email (~$19/yr)</strong> when launching. Migrate to <strong>Google Workspace ($72/yr)</strong> once you're actively collaborating with a team or need integrated calendaring and file storage. Both use your same custom domain — migration is straightforward.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 7 — COMPLIANCE                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 7 — Ongoing Compliance &amp; Obligations</div>
+
+  <!-- STEP 15: Annual Obligations -->
+  <div class="step" id="step-15-compliance">
+    <div class="step-header" onclick="toggleStep('step-15-compliance')">
+      <div class="step-check" onclick="toggleDone(event,'step-15-compliance')">✓</div>
+      <div class="step-num">15</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Know Your Annual Compliance Obligations <span class="badge badge-cost">💰 Recurring Costs</span></div>
+        <div class="step-subtitle">Forming your LLC is not a one-time event — here's everything you owe each year to stay in good standing.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 What "Good Standing" Means and Why It Matters</div>
+        <p>Your state requires you to file periodic reports and pay fees to confirm your business is still active and your information is current. If you fall behind, your LLC can be <strong>administratively dissolved</strong> — meaning your liability protection disappears and you can no longer legally sign contracts in your business name. Your registered agent service (Northwest) will send you reminders, but you are ultimately responsible.</p>
+      </div>
+      <div class="annual-grid">
+        <div class="annual-card">
+          <h4>State Annual Report</h4>
+          <div class="price">$25–$300</div>
+          <p>Most states require annual or biennial filing confirming your business info. Due dates vary; Indiana is due annually by the end of your formation month.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Registered Agent</h4>
+          <div class="price">$125/yr</div>
+          <p>Northwest Registered Agent annual fee after first free year. Fully tax-deductible.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Domain Renewal</h4>
+          <div class="price">$10–$50/yr</div>
+          <p>Set to auto-renew on Namecheap. Losing your domain is catastrophic and often unrecoverable.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Business Email</h4>
+          <div class="price">$19–$72/yr</div>
+          <p>Namecheap Private Email (~$19) or Google Workspace (~$72) per user per year.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Tax Preparation</h4>
+          <div class="price">$500–$2,000</div>
+          <p>CPA fees for annual business tax return. S-Corp election adds ~$500–$800 to prep cost but saves far more in taxes.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Payroll (S-Corp)</h4>
+          <div class="price">$600–$1,200/yr</div>
+          <p>Required if you elected S-Corp. Services like Gusto ($46–$80/mo) handle payroll taxes, filings, and W-2s.</p>
+        </div>
+        <div class="annual-card">
+          <h4>Bookkeeping</h4>
+          <div class="price">$180–$6,000/yr</div>
+          <p>QuickBooks Self-Employed (~$15/mo DIY) to outsourced bookkeeper ($300–$500/mo). Essential for S-Corp compliance.</p>
+        </div>
+        <div class="annual-card">
+          <h4>CA Franchise Tax</h4>
+          <div class="price">$800 minimum</div>
+          <p>California only. Mandatory regardless of revenue. Due April 15 each year.</p>
+        </div>
+      </div>
+      <div class="block block-cost" style="margin-top:16px">
+        <div class="block-label">💰 Total Annual Budget Ranges</div>
+        <p><strong>Lean LLC (no S-Corp, DIY books, home state):</strong> ~$600–$1,200/year</p>
+        <p><strong>LLC + S-Corp election (proper compliance):</strong> ~$3,000–$5,500/year — but SE tax savings typically reach $5,000–$15,000+/year once profitable</p>
+        <p><strong>One-time formation total:</strong> ~$200–$700 (state filing + Northwest first year + EIN)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PHASE 8 — OPTIONAL: BRAND PROTECTION       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="phase-label">Phase 8 — Optional: Trademark &amp; Copyright Protection</div>
+
+  <!-- STEP TRADEMARK -->
+  <div class="step" id="step-trademark">
+    <div class="step-header" onclick="toggleStep('step-trademark')">
+      <div class="step-check" onclick="toggleDone(event,'step-trademark')">✓</div>
+      <div class="step-num">★</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Register a Federal Trademark <span class="badge badge-cost">💰 $250–$350/class</span></div>
+        <div class="step-subtitle">Protect your business name and logo nationwide — not just in your state.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Trademark vs. Business Registration — Important Distinction</div>
+        <p>Registering your LLC protects your name within your state for entity registration purposes only. It does <strong>not</strong> stop a business in another state from using a similar name. A <strong>federal trademark</strong> gives you exclusive nationwide rights to use your business name, logo, or slogan in your specific industry category, and allows you to take legal action against infringers anywhere in the U.S.</p>
+        <p>You checked for conflicts in Step 2. Now is when you consider filing your own mark to create that same protection for others.</p>
+        <p><strong>Trademark protects:</strong> business names, logos, slogans, product names, brand elements<br/>
+        <strong>Copyright protects:</strong> original creative works — website copy, photography, software, written content, designs (see next step)</p>
+      </div>
+      <div class="block block-rec">
+        <div class="block-label">✅ When to Prioritize a Trademark</div>
+        <p>File a trademark if: (1) you're building a consumer brand, (2) you plan to license or franchise, (3) you're in a competitive market where name confusion is a real risk, or (4) your brand name has significant long-term value. For very local service businesses with no expansion plans in the near term, it's lower priority — but never permanently skip it.</p>
+      </div>
+
+      <div class="path-toggle" id="toggle-tm">
+        <button class="path-btn active-diy" onclick="switchPath('tm','diy')">🛠 DIY — File with USPTO</button>
+        <button class="path-btn" onclick="switchPath('tm','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="tm-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — USPTO TEAS Filing</div>
+          <p>File directly at <a href="https://www.uspto.gov/trademarks/apply" target="_blank">uspto.gov/trademarks/apply</a>. Use the <strong>TEAS Plus</strong> application for the lowest fee.</p>
+          <ul>
+            <li><strong>TEAS Plus:</strong> $250/class — requires selecting a pre-approved description from USPTO's ID Manual</li>
+            <li><strong>TEAS Standard:</strong> $350/class — allows custom description; more flexible</li>
+          </ul>
+          <p style="margin-top:10px">Processing takes <strong>8–14 months</strong>. You'll receive an application serial number immediately. Your priority date is established the day you file — even before approval.</p>
+          <p><strong>Tip:</strong> Search your industry's "Nice Classification" (the international trademark class system) to file in the right category. Filing in the wrong class offers no protection in your actual industry.</p>
+        </div>
+      </div>
+      <div class="path-panel" id="tm-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path — Northwest Registered Agent</div>
+          <div class="feature-card">
+            <div class="feature-logo green">NW</div>
+            <div class="feature-info">
+              <div class="feature-name"><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></div>
+              <div class="feature-tag">Trademark filing services — northwestregisteredagent.com</div>
+            </div>
+          </div>
+          <p>Northwest offers trademark search and filing services. They handle the class selection, description drafting, and USPTO submission on your behalf — significantly reducing the risk of errors that lead to rejection. Their trademark service is available directly through your Northwest dashboard.</p>
+          <p style="margin-top:10px"><strong>Other options:</strong></p>
+          <ul>
+            <li><strong><a href="https://www.trademarkengine.com" target="_blank">Trademark Engine</a></strong> — ~$99 service fee + USPTO filing fee. Good budget option.</li>
+            <li><strong>IP Attorney</strong> — $1,000–$2,500 total. Highest success rate; recommended for any brand where the trademark is a core business asset or litigation risk is present.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP COPYRIGHT -->
+  <div class="step" id="step-copyright">
+    <div class="step-header" onclick="toggleStep('step-copyright')">
+      <div class="step-check" onclick="toggleDone(event,'step-copyright')">✓</div>
+      <div class="step-num">★</div>
+      <div class="step-title-wrap">
+        <div class="step-title">Understand &amp; Register Copyrights <span class="badge badge-cost">💰 $45–$65/work</span></div>
+        <div class="step-subtitle">Copyright protects your creative work automatically — but registration unlocks legal teeth.</div>
+      </div>
+      <div class="step-toggle">▾</div>
+    </div>
+    <div class="step-body">
+      <div class="block block-edu">
+        <div class="block-label">📚 Copyright Basics for Business Owners</div>
+        <p><strong>Copyright arises automatically</strong> the moment you create an original work — your website copy, logo design, photography, software code, written content, videos, and marketing materials are all copyrighted the moment they're created. You don't need to register to own the copyright.</p>
+        <p><strong>However, registration matters for enforcement:</strong></p>
+        <ul>
+          <li>You cannot sue for copyright infringement in federal court without a registration.</li>
+          <li>Registration within 90 days of publication (or before infringement occurs) allows you to claim <strong>statutory damages up to $150,000 per work</strong> plus attorney's fees — without having to prove actual monetary loss.</li>
+          <li>Registration creates a public record of your ownership, which deters infringement and simplifies licensing negotiations.</li>
+        </ul>
+        <p style="margin-top:10px"><strong>What to register:</strong> your logo, website content, marketing materials, original photography, proprietary training materials, software, and any creative work that has commercial value to your business.</p>
+      </div>
+
+      <div class="path-toggle" id="toggle-cr">
+        <button class="path-btn active-diy" onclick="switchPath('cr','diy')">🛠 DIY — File with Copyright Office</button>
+        <button class="path-btn" onclick="switchPath('cr','pro')">🏢 Use a Professional Service</button>
+      </div>
+
+      <div class="path-panel visible" id="cr-diy">
+        <div class="block block-diy">
+          <div class="block-label">🛠 DIY Path — U.S. Copyright Office</div>
+          <p>Register online at <a href="https://www.copyright.gov/registration/" target="_blank">copyright.gov/registration</a>.</p>
+          <ul>
+            <li><strong>Single work (online form):</strong> $45</li>
+            <li><strong>Group of published photos or short online literary works:</strong> $65</li>
+            <li>Processing time: 3–11 months for online registration; faster for supplemental registrations</li>
+          </ul>
+          <p style="margin-top:10px">You'll upload a deposit copy of the work during registration. Keep a dated digital record of all original creative assets — useful as supporting evidence if ever challenged.</p>
+        </div>
+      </div>
+      <div class="path-panel" id="cr-pro">
+        <div class="block block-tool">
+          <div class="block-label">🏢 Professional Path</div>
+          <p>For comprehensive intellectual property strategy — especially if you have multiple works, proprietary software, or creative assets that are core to your business — consult an <strong>IP attorney</strong>. They can bundle multiple registrations, advise on work-for-hire agreements (important if contractors create content for you), and structure your IP ownership properly from the start.</p>
+          <p style="margin-top:10px"><strong><a href="https://www.northwestregisteredagent.com" target="_blank">Northwest Registered Agent</a></strong> can connect you with business legal services and guide you on IP protection strategy as part of their broader business support offerings.</p>
+        </div>
+      </div>
+
+      <div class="block block-warn">
+        <div class="block-label">⚠️ Work-for-Hire — Critical for Business Owners</div>
+        <p>If you hire a freelancer or contractor to create content, design a logo, or write software for your business, <strong>copyright belongs to them by default</strong> — not you — unless you have a written work-for-hire agreement or copyright assignment clause in your contract. Always include this language in any contract with creative contractors.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer-note">
+  <p><strong>Disclaimer:</strong> This guide is for educational purposes only and does not constitute legal, tax, or financial advice.<br/>
+  Consult a licensed CPA, attorney, or financial advisor for advice specific to your situation.<br/>
+  Laws, fees, and requirements change — always verify current requirements with your state and the IRS.</p>
+  <p style="margin-top:12px; color:rgba(245,240,232,0.3); font-size:12px">Built for founders · Updated 2025</p>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const STEP_IDS = ['step-1','step-2','step-3','step-4','step-5','step-6','step-7','step-8','step-9','step-10','step-11','step-12','step-13','step-14','step-15-compliance','step-trademark','step-copyright'];
+const TOTAL = STEP_IDS.length;
+
+function toggleStep(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function toggleDone(e, id) {
+  e.stopPropagation();
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('done');
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = document.querySelectorAll('.step.done').length;
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = done + ' of ' + TOTAL + ' steps completed';
+}
+
+function switchPath(key, mode) {
+  const diyPanel = document.getElementById(key + '-diy');
+  const proPanel = document.getElementById(key + '-pro');
+  const toggle   = document.getElementById('toggle-' + key);
+  if (!diyPanel || !proPanel || !toggle) return;
+  const btns = toggle.querySelectorAll('.path-btn');
+  if (mode === 'diy') {
+    diyPanel.classList.add('visible');
+    proPanel.classList.remove('visible');
+    btns[0].classList.add('active-diy');
+    btns[0].classList.remove('active-pro');
+    btns[1].classList.remove('active-pro');
+    btns[1].classList.remove('active-diy');
+  } else {
+    proPanel.classList.add('visible');
+    diyPanel.classList.remove('visible');
+    btns[1].classList.add('active-pro');
+    btns[1].classList.remove('active-diy');
+    btns[0].classList.remove('active-diy');
+    btns[0].classList.remove('active-pro');
+  }
+}
+
+function updateStateLink() {
+  const sel = document.getElementById('stateSelect');
+  const btn = document.getElementById('stateGoBtn');
+  const result = document.getElementById('stateResult');
+  const val = sel.value;
+  if (!val) { btn.style.display = 'none'; result.style.display = 'none'; return; }
+  const parts = val.split('|');
+  btn.href = parts[1];
+  btn.style.display = 'inline-flex';
+  result.style.display = 'block';
+  result.innerHTML = '📍 <strong>' + parts[0] + '</strong> — ' + parts[2];
+}
+
+function scrollToStep(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('open');
+  setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+document.getElementById('step-1').classList.add('open');
+</script>
+</div>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ─────────────────────────────────────────────────────────
+//  CONFIGURATION
+//  Replace the two placeholder strings below with your
+//  values from your Supabase project dashboard.
+//  See the setup guide (setup-guide.html) for instructions.
+// ─────────────────────────────────────────────────────────
+const SUPABASE_URL  = 'YOUR_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+// ─────────────────────────────────────────────────────────
+
+const DEMO_MODE = (SUPABASE_URL === 'YOUR_SUPABASE_PROJECT_URL');
+const sb = DEMO_MODE ? null : supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let userEmail = '';
+
+// OTP digit wiring
+const digits = Array.from({length:6}, (_,i) => document.getElementById('d'+i));
+digits.forEach((inp, i) => {
+  inp.addEventListener('input', e => {
+    e.target.value = e.target.value.replace(/[^0-9]/g,'');
+    if (e.target.value && i < 5) digits[i+1].focus();
+    checkReady();
+  });
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Backspace' && !inp.value && i > 0) digits[i-1].focus();
+  });
+  inp.addEventListener('paste', e => {
+    e.preventDefault();
+    const paste = (e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+    paste.split('').forEach((ch,j) => { if(digits[j]) digits[j].value = ch; });
+    digits[Math.min(paste.length,5)].focus();
+    checkReady();
+  });
+});
+
+function getCode() { return digits.map(d=>d.value).join(''); }
+function checkReady() { document.getElementById('btn-verify').disabled = getCode().length < 6; }
+
+function showMsg(id, type, text) {
+  const el = document.getElementById(id);
+  el.className = 'gate-msg ' + type;
+  el.textContent = text;
+}
+function clearMsg(id) { const el=document.getElementById(id); el.className='gate-msg'; el.textContent=''; }
+
+// ── SEND ─────────────────────────────────────────
+async function sendCode() {
+  const email = document.getElementById('email-input').value.trim();
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    showMsg('msg-email','error','Please enter a valid email address.');
+    return;
+  }
+  clearMsg('msg-email');
+  const btn = document.getElementById('btn-send');
+  btn.disabled = true; btn.textContent = 'Sending…';
+
+  if (DEMO_MODE) {
+    userEmail = email;
+    showMsg('msg-email','info','⚙️ Demo mode active — Supabase not yet configured. Demo code: 123456');
+    setTimeout(() => {
+      document.getElementById('chip-email').textContent = email;
+      document.getElementById('gs-email').style.display = 'none';
+      document.getElementById('gs-otp').style.display = 'block';
+      showMsg('msg-otp','info','Demo mode: enter 123456 to unlock.');
+    }, 600);
+    btn.disabled = false; btn.textContent = 'Send My Access Code →';
+    return;
+  }
+
+  const { error } = await sb.auth.signInWithOtp({ email, options:{ shouldCreateUser:true } });
+  btn.disabled = false; btn.textContent = 'Send My Access Code →';
+  if (error) { showMsg('msg-email','error','Error: '+error.message); return; }
+  userEmail = email;
+  document.getElementById('chip-email').textContent = email;
+  document.getElementById('gs-email').style.display = 'none';
+  document.getElementById('gs-otp').style.display = 'block';
+  showMsg('msg-otp','success','Code sent! Check your inbox.');
+}
+
+// ── VERIFY ────────────────────────────────────────
+async function verifyCode() {
+  const code = getCode();
+  if (code.length < 6) return;
+  const btn = document.getElementById('btn-verify');
+  btn.disabled = true; btn.textContent = 'Verifying…';
+  clearMsg('msg-otp');
+
+  if (DEMO_MODE) {
+    if (code === '123456') { unlockContent(); }
+    else {
+      showMsg('msg-otp','error','Wrong code. Demo mode: use 123456.');
+      btn.disabled = false; btn.textContent = 'Unlock the Guide →';
+    }
+    return;
+  }
+
+  const { error } = await sb.auth.verifyOtp({ email:userEmail, token:code, type:'email' });
+  if (error) {
+    showMsg('msg-otp','error','Invalid or expired code. Please try again or request a new one.');
+    btn.disabled = false; btn.textContent = 'Unlock the Guide →';
+    digits.forEach(d => d.value = ''); digits[0].focus();
+    return;
+  }
+  unlockContent();
+}
+
+// ── UNLOCK ────────────────────────────────────────
+function unlockContent() {
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('checklist-content').style.display = 'block';
+  initChecklist();
+  window.scrollTo(0,0);
+}
+
+// ── RESEND ────────────────────────────────────────
+async function resendCode() {
+  const btn = document.getElementById('btn-resend');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  clearMsg('msg-otp');
+  if (DEMO_MODE) {
+    showMsg('msg-otp','info','Demo mode: code is still 123456');
+    btn.disabled = false; btn.textContent = 'Resend code'; return;
+  }
+  const { error } = await sb.auth.signInWithOtp({ email:userEmail, options:{ shouldCreateUser:true } });
+  btn.disabled = false; btn.textContent = 'Resend code';
+  if (!error) showMsg('msg-otp','success','New code sent!');
+  else showMsg('msg-otp','error','Could not resend. Please try again.');
+}
+
+function goBack() {
+  document.getElementById('gs-otp').style.display = 'none';
+  document.getElementById('gs-email').style.display = 'block';
+  digits.forEach(d => d.value = '');
+  clearMsg('msg-otp'); clearMsg('msg-email');
+}
+
+document.getElementById('email-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendCode();
+});
+
+// ── CHECKLIST LOGIC (runs after unlock) ───────────
+function initChecklist() {
+const STEP_IDS = ['step-1','step-2','step-3','step-4','step-5','step-6','step-7','step-8','step-9','step-10','step-11','step-12','step-13','step-14','step-15-compliance','step-trademark','step-copyright'];
+const TOTAL = STEP_IDS.length;
+
+function toggleStep(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function toggleDone(e, id) {
+  e.stopPropagation();
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('done');
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = document.querySelectorAll('.step.done').length;
+  const pct = Math.round((done / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = done + ' of ' + TOTAL + ' steps completed';
+}
+
+function switchPath(key, mode) {
+  const diyPanel = document.getElementById(key + '-diy');
+  const proPanel = document.getElementById(key + '-pro');
+  const toggle   = document.getElementById('toggle-' + key);
+  if (!diyPanel || !proPanel || !toggle) return;
+  const btns = toggle.querySelectorAll('.path-btn');
+  if (mode === 'diy') {
+    diyPanel.classList.add('visible');
+    proPanel.classList.remove('visible');
+    btns[0].classList.add('active-diy');
+    btns[0].classList.remove('active-pro');
+    btns[1].classList.remove('active-pro');
+    btns[1].classList.remove('active-diy');
+  } else {
+    proPanel.classList.add('visible');
+    diyPanel.classList.remove('visible');
+    btns[1].classList.add('active-pro');
+    btns[1].classList.remove('active-diy');
+    btns[0].classList.remove('active-diy');
+    btns[0].classList.remove('active-pro');
+  }
+}
+
+function updateStateLink() {
+  const sel = document.getElementById('stateSelect');
+  const btn = document.getElementById('stateGoBtn');
+  const result = document.getElementById('stateResult');
+  const val = sel.value;
+  if (!val) { btn.style.display = 'none'; result.style.display = 'none'; return; }
+  const parts = val.split('|');
+  btn.href = parts[1];
+  btn.style.display = 'inline-flex';
+  result.style.display = 'block';
+  result.innerHTML = '📍 <strong>' + parts[0] + '</strong> — ' + parts[2];
+}
+
+function scrollToStep(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('open');
+  setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+document.getElementById('step-1').classList.add('open'); updateProgress();
+}
+</script>
+</body>
+</html>
